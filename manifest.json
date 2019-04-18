@@ -19,7 +19,8 @@
       "name": "apiBaseUrl",
       "type": "text",
       "required": true,
-      "secure": false
+      "secure": false,
+      "default": "https://s3b1007x6k.execute-api.us-west-2.amazonaws.com/dev/v1"
     },
     {
       "name": "apiToken",
