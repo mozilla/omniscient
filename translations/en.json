@@ -1,0 +1,11 @@
+{
+  "app": {
+    "name": "Omniscient",
+    "short_description": "View subscription information related to a help desk ticket.",
+    "installation_instructions": "Specify the API base URL and token.",
+    "parameters": {
+      "apiBaseUrl": { "label": "Base URL for SubHub API.", "helpText": "Include up to the version and do not supply a trailing foward slash. Format: 'https://example.com/dev/v1'" },
+      "apiToken": { "label": "Token for SubHub API" }
+    }
+  }
+}
