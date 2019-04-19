@@ -18,3 +18,20 @@ right-hand side of the page) that will hide/show the applications that are loade
 
 As you make changes to the application, you can use the "reload all apps" button to reload the application. This is a
 small button with a circular arrow located above the application on the right.
+
+## Zendesk Installation
+Once you are ready to load the app into Zendesk, you will first need to prepare the application. From the application 
+root directory execute the following:
+* `zat validate` to validate the application, if it fails validation, fix any reported errors and run the validation 
+command again.
+* `zat package` to package up the application into a zip file. The console output will give you the location of the zip
+file.
+
+Once you have the application packaged up, you are ready to install the application on Zendesk.
+
+* In Zendesk Support, click the Admin icon in the sidebar, then select Manage from the Apps category.
+* Click Upload Private App in the upper-right corner of the page.
+* Enter the name of your app (Requester X-ray). If you did the tutorial for ZAF v1 and installed the app, use a slightly different name for this second version of the app.
+* Click Choose File and select the zip file of your app.
+* Click Upload to upload the app to Zendesk Support.
+* When prompted, click Install.
