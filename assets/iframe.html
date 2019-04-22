@@ -9,12 +9,12 @@
 
     <script id="sub-template" type="text/x-handlebars-template">
         <div><b>User:</b> {{user}}</div>
-        <div><b>Subscriptions</b><br>
             {{#list subscriptions}}
-                <b>Subscription ID:</b> {{subscriptionId}}
                 <ul>
-                    <li><b>Next Charge Date:</b> {{nextChargeDate}}</li>
+                    <li><b>Subscription:</b> {{subscriptionId}}</li>
                     <li><b>Status:</b> {{status}}</li>
+                    <li><b>Last Payment:</b> {{lastPaymentDate}}</li>
+                    <li><b>Next Payment:</b> {{nextPaymentDate}}</li>
                 </ul>
             {{/list}}
         </div>

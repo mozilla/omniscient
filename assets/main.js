@@ -43,19 +43,11 @@ function getSubscriptionInfo(client, fxa_id) {
 function showSubscriptionInfo(data, fxa_id) {
     var subscriptions = [];
     data.forEach(function (obj) {
-        console.log(obj);
-
-        var status = 'active';
-        if (obj.end_at != null) {
-            status = 'cancelled';
-        }
-
-        var nextChargeDate = new Date(obj.current_period_end * 1000);
-
         var subscription = {
-            'subscriptionId': obj.subscription_id,
-            'nextChargeDate': nextChargeDate,
-            'status': status,
+            'subscriptionName': obj.nickname,
+            'status': obj.status,
+            'lastPaymentDate': formatUnixTimestamp(obj.current_period_start),
+            'nextPaymentDate': formatUnixTimestamp(obj.current_period_end)
         };
 
         subscriptions.push(subscription);
@@ -74,11 +66,19 @@ function showSubscriptionInfo(data, fxa_id) {
     $("#content").html(html);
 }
 
+function formatUnixTimestamp(timestamp) {
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    var date = new Date(timestamp * 1000);
+
+    return date.getDate() + ' ' + months[date.getMonth()] + ' ' + date.getFullYear();
+}
+
 Handlebars.registerHelper('list', function(context, options) {
-    var ret = "<ul>";
+    var ret = '';
     for(var i=0, j=context.length; i<j; i++) {
-        ret = ret + "<li>" + options.fn(context[i]) + "</li>";
+        ret = ret + "<hr>" + options.fn(context[i]);
     }
 
-    return ret + "</ul>";
+    return ret;
 });
