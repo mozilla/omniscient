@@ -36,4 +36,4 @@ Once you have the application packaged up, you are ready to install the applicat
 * Click Upload to upload the app to Zendesk Support.
 * When prompted, click Install.
 
-After the application has been installed, use the 
+After the application has been installed, the configurations can be updated from the Apps Manager.
