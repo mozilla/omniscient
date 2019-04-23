@@ -20,13 +20,20 @@
       "type": "text",
       "required": true,
       "secure": false,
-      "default": "https://s3b1007x6k.execute-api.us-west-2.amazonaws.com/dev/v1"
+      "default": "https://xlvz8k2h6b.execute-api.us-west-2.amazonaws.com/dev/v1"
     },
     {
       "name": "apiToken",
       "type": "text",
       "required": true,
       "secure": true
+    },
+    {
+      "name": "fxaFieldId",
+      "type": "text",
+      "required": true,
+      "secure": false,
+      "default": "360018061392"
     }
   ]
 }
