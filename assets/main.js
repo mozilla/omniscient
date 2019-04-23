@@ -31,6 +31,7 @@ function getSubscriptionInfo(client, fxa_id) {
 
         client.request(settings).then(
             function(data) {
+                console.log(data);
                 showSubscriptionInfo(data, fxa_id);
             },
             function(response) {
