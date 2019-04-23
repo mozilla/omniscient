@@ -31,7 +31,7 @@ Once you have the application packaged up, you are ready to install the applicat
 
 * In Zendesk Support, click the Admin icon in the sidebar, then select Manage from the Apps category.
 * Click Upload Private App in the upper-right corner of the page.
-* Enter the name of your app (Requester X-ray). If you did the tutorial for ZAF v1 and installed the app, use a slightly different name for this second version of the app.
+* Enter the name of your app.
 * Click Choose File and select the zip file of your app.
 * Click Upload to upload the app to Zendesk Support.
 * When prompted, click Install.
