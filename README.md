@@ -35,3 +35,5 @@ Once you have the application packaged up, you are ready to install the applicat
 * Click Choose File and select the zip file of your app.
 * Click Upload to upload the app to Zendesk Support.
 * When prompted, click Install.
+
+After the application has been installed, use the 
