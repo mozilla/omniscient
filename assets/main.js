@@ -42,7 +42,7 @@ function getSubscriptionInfo(client, fxa_id) {
 
 function showSubscriptionInfo(data, fxa_id) {
     var subscriptions = [];
-    data.forEach(function (obj) {
+    data['subscriptions'].forEach(function (obj) {
         var subscription = {
             'subscriptionName': obj.nickname,
             'status': obj.status,
@@ -63,7 +63,7 @@ function showSubscriptionInfo(data, fxa_id) {
     var source = $("#sub-template").html();
     var template = Handlebars.compile(source);
     var html = template(subscriptionData);
-    $("#content").html(html);
+    $("#subscriptions").html(html);
 }
 
 function formatUnixTimestamp(timestamp) {
