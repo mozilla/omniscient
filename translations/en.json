@@ -6,12 +6,12 @@
     "parameters": {
       "apiBaseUrl": {
         "label": "Base URL for SubHub API.",
-        "helpText": "Include up to the version and do not supply a trailing forward slash. Format: 'https://example.com/dev/v1'",
+        "helpText": "Include up to the version and do not supply a trailing forward slash. Format: 'https://example.com/dev/v1'"
       },
       "apiToken": { "label": "Token for SubHub API" },
       "fxaFieldId": {
         "label": "Field ID for Firefox Account",
-        "helpText": "You can locate the Field ID by navigating to the Ticket Fields dashboard.",
+        "helpText": "You can locate the Field ID by navigating to the Ticket Fields dashboard."
       },
       "fxaDashboardUrl" : {
         "label": "Base URL for FxA Dashboard.",
