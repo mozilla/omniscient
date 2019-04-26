@@ -34,6 +34,12 @@
       "required": true,
       "secure": false,
       "default": "360018061392"
+    },
+    {
+      "name": "fxaDashboardUrl",
+      "type": "text",
+      "required": true,
+      "secure": false
     }
   ]
 }

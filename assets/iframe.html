@@ -5,11 +5,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@zendeskgarden/css-bedrock@7.0" type="text/css">
 </head>
 <body>
-    <div id="subscriptions"></div>
-    <div id="dashboard"></div>
+    <div id="content"></div>
 
     <script id="sub-template" type="text/x-handlebars-template">
-        <div><b>User:</b> {{user}}</div>
+        <div>
+            <p><b>User:</b> {{user}}</p>
             {{#list subscriptions}}
                 <ul>
                     <li><b>Subscription:</b> {{subscriptionName}}</li>
@@ -18,6 +18,12 @@
                     <li><b>Next Payment:</b> {{nextPaymentDate}}</li>
                 </ul>
             {{/list}}
+        </div>
+        <br />
+        <hr />
+        <br />
+        <div>
+            <iframe id="fxa-dashboard" src="{{dashboardSrc}}"></iframe>
         </div>
     </script>
 

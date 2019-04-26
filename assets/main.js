@@ -1,6 +1,6 @@
 $(function () {
     var client = ZAFClient.init();
-    client.invoke('resize', {width: '100%', height: '200px'});
+    client.invoke('resize', {width: '100%', height: '400px'});
 
     //Fetch the Firefox Account ID from the ticket
     client.metadata().then(function (metadata) {
@@ -29,10 +29,25 @@ function getSubscriptionInfo(client, fxa_id) {
             }
         };
 
+        var dashboardBase = metadata.settings.fxaDashboardUrl;
+        var iframeUrl = dashboardBase + '/' + fxa_id;
+
         client.request(settings).then(
             function(data) {
                 console.log(data);
-                showSubscriptionInfo(data, fxa_id);
+
+                var templateContent = {
+                    'user': fxa_id,
+                    'subscriptions': formatSubscriptions(data['subscriptions']),
+                    'dashboardSrc': iframeUrl
+                };
+
+                console.log(templateContent);
+
+                var source = $("#sub-template").html();
+                var template = Handlebars.compile(source);
+                var html = template(templateContent);
+                $("#content").html(html);
             },
             function(response) {
                 console.error(response.responseText);
@@ -41,9 +56,10 @@ function getSubscriptionInfo(client, fxa_id) {
     })
 }
 
-function showSubscriptionInfo(data, fxa_id) {
+function formatSubscriptions(rawSubscriptions) {
     var subscriptions = [];
-    data['subscriptions'].forEach(function (obj) {
+
+    rawSubscriptions.forEach(function (obj) {
         var subscription = {
             'subscriptionName': obj.nickname,
             'status': obj.status,
@@ -54,17 +70,7 @@ function showSubscriptionInfo(data, fxa_id) {
         subscriptions.push(subscription);
     });
 
-    var subscriptionData = {
-        'user': fxa_id,
-        'subscriptions': subscriptions
-    };
-
-    console.log(subscriptionData);
-
-    var source = $("#sub-template").html();
-    var template = Handlebars.compile(source);
-    var html = template(subscriptionData);
-    $("#subscriptions").html(html);
+    return subscriptions;
 }
 
 function formatUnixTimestamp(timestamp) {
@@ -78,7 +84,7 @@ function formatUnixTimestamp(timestamp) {
 Handlebars.registerHelper('list', function(context, options) {
     var ret = '';
     for(var i=0, j=context.length; i<j; i++) {
-        ret = ret + "<hr>" + options.fn(context[i]);
+        ret = ret + "<hr />" + options.fn(context[i]);
     }
 
     return ret;
