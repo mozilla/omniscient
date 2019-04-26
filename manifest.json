@@ -20,7 +20,7 @@
       "type": "text",
       "required": true,
       "secure": false,
-      "default": "https://xlvz8k2h6b.execute-api.us-west-2.amazonaws.com/dev/v1"
+      "default": "https://71l44s00vg.execute-api.us-west-2.amazonaws.com/dev/v1"
     },
     {
       "name": "apiToken",
