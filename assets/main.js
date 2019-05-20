@@ -4,12 +4,32 @@ $(function () {
 
     //Fetch the Firefox Account ID from the ticket
     client.metadata().then(function (metadata) {
-        var fxaFieldId = metadata.settings.fxaFieldId;
-        var fxaProperty = 'ticket.customField:custom_field_' + fxaFieldId;
+        var ticketGroupProperty = 'ticket.assignee.group.name';
 
-        client.get(fxaProperty).then(function (data) {
-            var fxa_id = data[fxaProperty];
-            getSubscriptionInfo(client, fxa_id);
+        var fxaFieldId = metadata.settings.fxaFieldId;
+        var fxaProperty = 'ticket.requester.customField:' + fxaFieldId;
+
+        client.get(ticketGroupProperty).then(function (data) {
+            var ticketGroup = data[ticketGroupProperty];
+
+            var regex = /subscription/ig;
+            var found = ticketGroup.match(regex);
+
+            if (found) {
+                client.get(fxaProperty).then(function (data) {
+                    var fxa_id = data[fxaProperty];
+
+                    if (fxa_id) {
+                        getSubscriptionInfo(client, fxa_id);
+                    } else {
+                        displayError('User does not have a Firefox Account ID.')
+                    }
+                })
+            } else {
+                displayError('Not a Subscription Services ticket.')
+            }
+        }, function (error) {
+            console.error(error);
         })
     })
 })
@@ -25,7 +45,7 @@ function getSubscriptionInfo(client, fxa_id) {
             'content-Type': 'x-www-form-urlencoded',
             'dataType': 'json',
             'headers': {
-                'Authorization': 'bearer ' + apiToken
+                'Authorization': apiToken
             }
         };
 
@@ -34,15 +54,11 @@ function getSubscriptionInfo(client, fxa_id) {
 
         client.request(settings).then(
             function(data) {
-                console.log(data);
-
                 var templateContent = {
                     'user': fxa_id,
                     'subscriptions': formatSubscriptions(data['subscriptions']),
                     'dashboardSrc': iframeUrl
                 };
-
-                console.log(templateContent);
 
                 var source = $("#sub-template").html();
                 var template = Handlebars.compile(source);
@@ -51,6 +67,7 @@ function getSubscriptionInfo(client, fxa_id) {
             },
             function(response) {
                 console.error(response.responseText);
+                displayError('Unable to fetch subscription data.')
             }
         );
     })
@@ -79,6 +96,17 @@ function formatUnixTimestamp(timestamp) {
     var date = new Date(timestamp * 1000);
 
     return date.getDate() + ' ' + months[date.getMonth()] + ' ' + date.getFullYear();
+}
+
+function displayError(errorMessage) {
+    var templateContent = {
+        'error': errorMessage
+    };
+
+    var source = $("#sub-template").html();
+    var template = Handlebars.compile(source);
+    var html = template(templateContent);
+    $("#content").html(html);
 }
 
 Handlebars.registerHelper('list', function(context, options) {

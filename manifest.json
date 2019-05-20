@@ -19,21 +19,20 @@
       "name": "apiBaseUrl",
       "type": "text",
       "required": true,
-      "secure": false,
-      "default": "https://71l44s00vg.execute-api.us-west-2.amazonaws.com/dev/v1"
+      "secure": false
     },
     {
       "name": "apiToken",
       "type": "text",
       "required": true,
-      "secure": true
+      "secure": false
     },
     {
       "name": "fxaFieldId",
       "type": "text",
       "required": true,
       "secure": false,
-      "default": "360018061392"
+      "default": "fxa_user_id"
     },
     {
       "name": "fxaDashboardUrl",
