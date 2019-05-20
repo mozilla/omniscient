@@ -12,20 +12,12 @@ $(function () {
         client.get(ticketGroupProperty).then(function (data) {
             var ticketGroup = data[ticketGroupProperty];
 
-            console.log(ticketGroup);
-
-
             var regex = /subscription/ig;
             var found = ticketGroup.match(regex);
 
-            console.log(found);
             if (found) {
-                console.log(fxaProperty);
-
                 client.get(fxaProperty).then(function (data) {
                     var fxa_id = data[fxaProperty];
-
-                    console.log(fxa_id);
 
                     if (fxa_id) {
                         getSubscriptionInfo(client, fxa_id);
@@ -37,7 +29,7 @@ $(function () {
                 displayError('Not a Subscription Services ticket.')
             }
         }, function (error) {
-            console.log(error);
+            console.error(error);
         })
     })
 })
@@ -62,8 +54,6 @@ function getSubscriptionInfo(client, fxa_id) {
 
         client.request(settings).then(
             function(data) {
-                console.log(data);
-
                 var templateContent = {
                     'user': fxa_id,
                     'subscriptions': formatSubscriptions(data['subscriptions']),
