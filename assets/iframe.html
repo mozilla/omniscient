@@ -8,16 +8,23 @@
     <div id="content"></div>
 
     <script id="sub-template" type="text/x-handlebars-template">
-        <div>
+        {{#if error}}
+        <div><p>{{error}}</p></div>
+        {{else}}
+         <div>
             <p><b>User:</b> {{user}}</p>
-            {{#list subscriptions}}
-                <ul>
-                    <li><b>Subscription:</b> {{subscriptionName}}</li>
-                    <li><b>Status:</b> {{status}}</li>
-                    <li><b>Last Payment:</b> {{lastPaymentDate}}</li>
-                    <li><b>Next Payment:</b> {{nextPaymentDate}}</li>
-                </ul>
-            {{/list}}
+            {{#if subscriptions}}
+                {{#list subscriptions}}
+                    <ul>
+                        <li><b>Subscription:</b> {{subscriptionName}}</li>
+                        <li><b>Status:</b> {{status}}</li>
+                        <li><b>Last Payment:</b> {{lastPaymentDate}}</li>
+                        <li><b>Next Payment:</b> {{nextPaymentDate}}</li>
+                    </ul>
+                {{/list}}
+            {{else}}
+                <p>No subscriptions to display.</p>
+            {{/if}}
         </div>
         <br />
         <hr />
@@ -25,6 +32,11 @@
         <div>
             <iframe id="fxa-dashboard" src="{{dashboardSrc}}" height="100%"></iframe>
         </div>
+        {{/if}}
+    </script>
+
+    <script id="not-subscriber" type="text/x-handlebars-template">
+        <div><p>N{{errorText}}</p></div>
     </script>
 
     <script src="https://cdn.jsdelivr.net/jquery/3.2.1/jquery.min.js"></script>

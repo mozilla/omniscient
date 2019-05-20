@@ -9,8 +9,8 @@
       },
       "apiToken": { "label": "Token for SubHub API" },
       "fxaFieldId": {
-        "label": "Field ID for Firefox Account",
-        "helpText": "You can locate the Field ID by navigating to the Ticket Fields dashboard."
+        "label": "Field Key for Firefox Account",
+        "helpText": "You can locate the Field Key by navigating to the User Fields dashboard."
       },
       "fxaDashboardUrl" : {
         "label": "Base URL for FxA Dashboard.",
