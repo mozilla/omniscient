@@ -6,8 +6,8 @@ $(function () {
     client.metadata().then(function (metadata) {
         var ticketGroupProperty = 'ticket.assignee.group.name';
 
-        var fxaFieldId = metadata.settings.fxaFieldId;
-        var fxaProperty = 'ticket.requester.customField:' + fxaFieldId;
+        var userIdFieldKey = metadata.settings.userIdFieldKey;
+        var userIdProperty = 'ticket.requester.customField:' + userIdFieldKey;
 
         client.get(ticketGroupProperty).then(function (data) {
             var ticketGroup = data[ticketGroupProperty];
@@ -16,11 +16,11 @@ $(function () {
             var found = ticketGroup.match(regex);
 
             if (found) {
-                client.get(fxaProperty).then(function (data) {
-                    var fxa_id = data[fxaProperty];
+                client.get(userIdProperty).then(function (data) {
+                    var user_id = data[userIdProperty];
 
-                    if (fxa_id) {
-                        getSubscriptionInfo(client, fxa_id);
+                    if (user_id) {
+                        getSubscriptionInfo(client, user_id);
                     } else {
                         displayError('User does not have a Firefox Account ID.')
                     }
@@ -34,13 +34,13 @@ $(function () {
     })
 })
 
-function getSubscriptionInfo(client, fxa_id) {
+function getSubscriptionInfo(client, user_id) {
     client.metadata().then(function(metadata) {
         var baseUrl = metadata.settings.apiBaseUrl;
         var apiToken = metadata.settings.apiToken;
 
         var settings = {
-            'url': baseUrl + '/customer/' + fxa_id + '/subscriptions',
+            'url': baseUrl + '/support/' + user_id + '/subscriptions',
             'type': 'GET',
             'content-Type': 'x-www-form-urlencoded',
             'dataType': 'json',
@@ -49,13 +49,13 @@ function getSubscriptionInfo(client, fxa_id) {
             }
         };
 
-        var dashboardBase = metadata.settings.fxaDashboardUrl;
-        var iframeUrl = dashboardBase + '/' + fxa_id;
+        var dashboardBase = metadata.settings.subscriptionDashboardUrl;
+        var iframeUrl = dashboardBase + '/' + user_id;
 
         client.request(settings).then(
             function(data) {
                 var templateContent = {
-                    'user': fxa_id,
+                    'user': user_id,
                     'subscriptions': formatSubscriptions(data['subscriptions']),
                     'dashboardSrc': iframeUrl
                 };
