@@ -4,25 +4,32 @@ $(function () {
 
     //Fetch the Firefox Account ID from the ticket
     client.metadata().then(function (metadata) {
-        var ticketGroupProperty = 'ticket.assignee.group.name';
-
         var userIdFieldKey = metadata.settings.userIdFieldKey;
         var userIdProperty = 'ticket.requester.customField:' + userIdFieldKey;
 
-        client.get(ticketGroupProperty).then(function (data) {
-            var ticketGroup = data[ticketGroupProperty];
+        client.get('ticket').then(function (data) {
+            var subscriptionFormId = 360000417091;
+            var subscriptionTag = 'subscription_services';
 
-            var regex = /subscription/ig;
-            var found = ticketGroup.match(regex);
+            var ticketFormId = data.ticket.form.id;
+            var ticketTags = data.ticket.tags;
 
-            if (found) {
+            var isSubscriptionTicket = false;
+
+            if (ticketFormId === subscriptionFormId) {
+                isSubscriptionTicket = true;
+            } else if (ticketTags.includes(subscriptionTag)) {
+                isSubscriptionTicket = true;
+            }
+
+            if (isSubscriptionTicket) {
                 client.get(userIdProperty).then(function (data) {
                     var user_id = data[userIdProperty];
 
                     if (user_id) {
                         getSubscriptionInfo(client, user_id);
                     } else {
-                        displayError('User does not have a Firefox Account ID.')
+                        displayError('User does not have a User ID.')
                     }
                 })
             } else {
