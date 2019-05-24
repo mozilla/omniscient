@@ -1,6 +1,20 @@
 # omniscient
 A custom Zendesk app that will provide subscription data in relation to help desk tickets.
 
+## Expected Behavior
+This app determines if a ticket is a subscription services ticket by checking the form id and the ticket tags. If the 
+form id matches the Subscription Services form or the 'subscription_services' tag is used the app will attempt to load
+the user's subscription information. If the app determines that the ticket is not a subscription services ticket, a
+message will display explaining that the ticket is not of an applicable type.
+
+The app will then check to see that the ticket requester has a user id set. If the user id is not set, the app will
+display text describing that the user object does not have an id associated with it. If the user id is found, the app
+will then attempt to load the subscription data for the user.
+
+If there is an error fetching the user's subscription data, a message will display describing that the app was unable to
+load subscription data. Otherwise, the app will display any subscription data for the user or indicate that the user
+does not have any subscription data to display.
+
 ## Local Development
 From within a terminal, you can run the app locally and test the app within the Zendesk instance.
 
