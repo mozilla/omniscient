@@ -28,14 +28,14 @@
       "secure": false
     },
     {
-      "name": "fxaFieldId",
+      "name": "userIdFieldKey",
       "type": "text",
       "required": true,
       "secure": false,
-      "default": "fxa_user_id"
+      "default": "user_id"
     },
     {
-      "name": "fxaDashboardUrl",
+      "name": "subscriptionDashboardUrl",
       "type": "text",
       "required": true,
       "secure": false

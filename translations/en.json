@@ -8,12 +8,12 @@
         "helpText": "Include up to the version and do not supply a trailing forward slash. Format: 'https://example.com/dev/v1'"
       },
       "apiToken": { "label": "Token for SubHub API" },
-      "fxaFieldId": {
-        "label": "Field Key for Firefox Account",
+      "userIdFieldKey": {
+        "label": "Field Key for User Id",
         "helpText": "You can locate the Field Key by navigating to the User Fields dashboard."
       },
-      "fxaDashboardUrl" : {
-        "label": "Base URL for FxA Dashboard.",
+      "subscriptionDashboardUrl" : {
+        "label": "Base URL for Subscription Dashboard.",
         "helpText": "Do not include a trailing forward slash. Format: 'https://example.com/dashboard'"
       }
     }
