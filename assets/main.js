@@ -47,7 +47,7 @@ function getSubscriptionInfo(client, user_id) {
         var apiToken = metadata.settings.apiToken;
 
         var settings = {
-            'url': baseUrl + '/support/' + user_id + '/subscriptions',
+            'url': baseUrl + '/v1/support/' + user_id + '/subscriptions',
             'type': 'GET',
             'content-Type': 'x-www-form-urlencoded',
             'dataType': 'json',
@@ -85,7 +85,7 @@ function formatSubscriptions(rawSubscriptions) {
 
     rawSubscriptions.forEach(function (obj) {
         var subscription = {
-            'subscriptionName': obj.nickname,
+            'subscriptionName': obj.plan_name,
             'status': obj.status,
             'lastPaymentDate': formatUnixTimestamp(obj.current_period_start),
             'nextPaymentDate': formatUnixTimestamp(obj.current_period_end)

@@ -16,6 +16,10 @@ load subscription data. Otherwise, the app will display any subscription data fo
 does not have any subscription data to display.
 
 ## Local Development
+
+Before beginning development, you will need to install Zendesk App Tools (ZAT). Installation instructions can be followed
+here: https://develop.zendesk.com/hc/en-us/articles/360001075048-Installing-and-using-the-Zendesk-apps-tools
+
 From within a terminal, you can run the app locally and test the app within the Zendesk instance.
 
 To start the application locally execute `zat server` from the application's root directory.
