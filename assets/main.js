@@ -57,7 +57,7 @@ function getSubscriptionInfo(client, user_id) {
         };
 
         var dashboardBase = metadata.settings.subscriptionDashboardUrl;
-        var iframeUrl = dashboardBase + '/' + user_id;
+        var iframeUrl = dashboardBase + '?uid=' + user_id;
 
         client.request(settings).then(
             function(data) {
