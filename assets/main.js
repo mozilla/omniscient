@@ -47,7 +47,7 @@ function getSubscriptionInfo(client, user_id) {
         var apiToken = metadata.settings.apiToken;
 
         var settings = {
-            'url': baseUrl + '/v1/support/' + user_id + '/subscriptions',
+            'url': baseUrl + '/v1/sub/support/' + user_id + '/subscriptions',
             'type': 'GET',
             'content-Type': 'x-www-form-urlencoded',
             'dataType': 'json',
@@ -58,6 +58,7 @@ function getSubscriptionInfo(client, user_id) {
 
         var dashboardBase = metadata.settings.subscriptionDashboardUrl;
         var iframeUrl = dashboardBase + '?uid=' + user_id;
+
 
         client.request(settings).then(
             function(data) {
