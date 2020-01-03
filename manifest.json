@@ -16,18 +16,6 @@
   "frameworkVersion": "2.0",
   "parameters": [
     {
-      "name": "apiBaseUrl",
-      "type": "text",
-      "required": true,
-      "secure": false
-    },
-    {
-      "name": "apiToken",
-      "type": "text",
-      "required": true,
-      "secure": false
-    },
-    {
       "name": "userIdFieldKey",
       "type": "text",
       "required": true,
