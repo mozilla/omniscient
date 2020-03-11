@@ -11,26 +11,9 @@
         {{#if error}}
         <div><p>{{error}}</p></div>
         {{else}}
-         <div>
-            <p><b>User:</b> {{user}}</p>
-            {{#if subscriptions}}
-                {{#list subscriptions}}
-                    <ul>
-                        <li><b>Subscription:</b> {{subscriptionName}}</li>
-                        <li><b>Status:</b> {{status}}</li>
-                        <li><b>Last Payment:</b> {{lastPaymentDate}}</li>
-                        <li><b>Next Payment:</b> {{nextPaymentDate}}</li>
-                    </ul>
-                {{/list}}
-            {{else}}
-                <p>No subscriptions to display.</p>
-            {{/if}}
-        </div>
-        <br />
-        <hr />
-        <br />
+
         <div>
-            <iframe id="subscription-dashboard" src="{{dashboardSrc}}" height="100%"></iframe>
+            <iframe sandbox="allow-scripts allow-same-origin" id="subscription-dashboard" src="{{dashboardSrc}}" height="100%"></iframe>
         </div>
         {{/if}}
     </script>
